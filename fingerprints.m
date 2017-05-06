@@ -4,14 +4,14 @@ function hashtable = fingerprints(s)
 % This function was taken from the public repository above however it was
 % edited slightly so that it would work with our program.
 
-% The function takes the STFT of the input mono sound vector s using
+% The function takes the STFT of the input mono sound vectors using
 % windowing and then creates a hashtable of the larger frequencies to
 % create the fingerprints and construct a hashtable.
-% Instead of using a spectrogram function this code explicitly represents 
-% it using w implementations of the FFT at the respective times where w is 
+% Instead of using a spectrogram function this code explicitly represents
+% it using w implementations of the FFT at the respective times where w is
 % # of windows. This is done using by multiplying the fft by the window for
 % every window and then finding the maximum frequencies in that window.
-% This find the fingerprints.  
+% This find the fingerprints.
 
 % Those fingerprints are then put into a hashtable which is represented as
 % a cell and the function fingerprints(s) outputs this hashtable in the
@@ -25,7 +25,7 @@ olen = wlen/2;      % Overlap length which is up to half of window length.
 slen = length(s);   % Length of discrete song indices.
 
 % Target window definitions needed for function "fingerprints.m".
-t_mindelta = 1; 
+t_mindelta = 1;
 t_maxdelta = 20;
 t_freqdiff = 10;
 
@@ -42,7 +42,7 @@ for w_ind = 1:num_win,
 	waitbar(w_ind/num_win,h);
 	wstart = (w_ind-1)*(wlen-olen)+1;
 	wend = wstart + wlen - 1;
-	
+
 	win = s(wstart:wend).*hamming(wlen);
 	fwin = abs(fft(win));
 	[maxpeak,maxind] = max(fwin);
