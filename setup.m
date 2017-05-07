@@ -5,7 +5,7 @@
 
 clc; clear; close;
 
-songdir = 'songs\';
+songdir = 'songs\'
 hashdir = 'hashtables\';
 
 fs = 10000;         % Arbitrarily chose sampling frequency of 10 kHz.

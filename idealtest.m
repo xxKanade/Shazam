@@ -6,22 +6,22 @@ clear all; close all; clc;
 % generates a random 15 second sample of music to identify
 start = randi([0 floor(length(y)/Fs)-15],1,1)
 stop = start+15;
-z = y(Fs*start+1:1:Fs*stop);        % range [seconds] of audio file playing
+sample = y(Fs*start+1:1:Fs*stop);        % sample = 15 second sample
 
-sound(z,Fs);                        % plays audio file
+sound(sample,Fs);                        % plays audio file
 
-s = spectrogram(z);
+s = spectrogram(sample);
 
-Y = fft(z);                         % fft with N = 5000 samples
+Y = fft(sample);                         % fft with N = 5000 samples
 
 % define analysis parameters
-xlen = length(x);                   % length of the signal
+zlen = length(sample);                   % length of the signal
 wlen = 1024;                        % window length (recomended to be power of 2)
 hop = wlen/4;                       % hop size (recomended to be power of 2)
 nfft = 4096;                        % number of fft points (recomended to be power of 2)
 
 % perform STFT
-[S, f, t] = stft(x, wlen, hop, nfft, fs);
+[S, f, t] = stft(sample, wlen, hop, nfft, 8000);
 
 % define the coherent amplification of the window
 K = sum(hamming(wlen, 'periodic'))/wlen;
