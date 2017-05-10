@@ -54,8 +54,6 @@ close(h)
 % t_diffrange = t_maxdelta-t_mindelta+1;
 hashtable = cell(wlen/2+1,2*t_freqdiff+1,t_maxdelta);
 
-
-
 % fill hash table
 h = waitbar(0,'Filling hash table...');
 for w_ind = 1:num_win,

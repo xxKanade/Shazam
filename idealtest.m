@@ -4,34 +4,29 @@ close all; clc;
 waitfor(msgbox('Select a song sample.'))
 [filename, pathname] = uigetfile('*.wav');
 
-if ~file
-    disp('Error 404: File not Found.');
-    return;
-end
 
 % Reads in an audio file
-[y, Fs] = audioread(filename);
+[clip, Fs] = audioread(filename);                      
 
-% generates a random 15 second sample of music to identify
-% start = randi([0 floor(length(y)/Fs)-15],1,1)
-% stop = start+15;
-% sample = y(Fs*start+1:1:Fs*stop);
+% generates a random 10 second sample of music to identify
+start = randi([0 floor(length(y)/Fs)-10],1,1)
+stop = start+10;
+z = clip(Fs*start+1:1:Fs*stop);
 
-sound(sample,Fs);                        % plays audio file
-pause(10);
+sound(z,Fs);                        % plays audio file
+pause(10)
 clear sound;
 
-% matchID = FUNCTION THAT TAKES IN (y, Fs) to compare against data in
-% database.
+% OR SOMETHING SIMILAR TO THIS V
+match = search(z, Fs);
 
-msgbox(['Match found! : ' songid{matchID}]);
+%msgbox(['Match found! : ' songid{match}]);
 
 
-% 
-% s = spectrogram(sample);
-% 
-% Y = fft(sample);                         % fft with N = 5000 samples
-% 
+
+
+                         
+
 % % define analysis parameters
 % zlen = length(sample);                   % length of the signal
 % wlen = 1024;                        % window length (recomended to be power of 2)
