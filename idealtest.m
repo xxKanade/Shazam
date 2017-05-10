@@ -22,6 +22,7 @@ match = search(z, Fs);
 
 %msgbox(['Match found! : ' songid{match}]);
 
+% close afterwards
 
 
 
